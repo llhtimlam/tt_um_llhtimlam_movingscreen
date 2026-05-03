@@ -17,4 +17,4 @@ Test with CocoTB
 
 ## External hardware
 
-TV Screen
+TV Screen and FPGA
