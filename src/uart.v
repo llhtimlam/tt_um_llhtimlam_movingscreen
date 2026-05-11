@@ -10,15 +10,13 @@ module uart_tx (
   input   wire        send,       // pulse(1) to send byte
   input   wire [7:0]  data,       // byte to send
   output  wire        tx,         // serial output
-  output  reg         busy,        // 1 while sending, 0 when idle
-  output reg [13:0] baud_counter,
-  output reg [3:0]   bit_idx
+  output  reg         busy        // 1 while sending, 0 when idle
 );
 
   wire        baud_tick;    // send tick (1: Send 0: Idle)
-  //reg [13:0]  baud_counter; // counts clock cycles 8192
+  reg [13:0]  baud_counter; // counts clock cycles 8192
   
-  //reg [3:0]   bit_idx;      // 0..9 (start, 8 data, stop)
+  reg [3:0]   bit_idx;      // 0..9 (start, 8 data, stop)
   reg [9:0]   shift;        // {stop, data, start}
 
   assign baud_tick = (baud_counter == `BAUD_COUNTER); 
@@ -149,7 +147,6 @@ tx_packet[4] = y_low;
 // Byte 5: checksum (XOR of bytes 1..4)
 tx_packet[5] = tx_packet[1] ^ tx_packet[2] ^ tx_packet[3] ^ tx_packet[4];
 
-*/
 
 module packet_sender #(parameter MAX_BYTES = 7) (
   input  wire       clk, rst_n,
@@ -159,12 +156,10 @@ module packet_sender #(parameter MAX_BYTES = 7) (
   output wire [7:0] tx_data,          // bitstream uart_tx(.data)
   input  wire       tx_busy,          // status uart_tx(.busy)
   output reg        busy,              // 1 while sending, 0 when idle
-  output reg [1:0] state,
-  output reg [2:0] byte_cnt
 );
 
-  //reg [1:0] state;
-  //reg [2:0] byte_cnt;
+  reg [1:0] state;
+  reg [2:0] byte_cnt;
 
   reg [14:0] timeout;
   
@@ -184,7 +179,6 @@ module packet_sender #(parameter MAX_BYTES = 7) (
       tx_send   <= 1'b0;
       busy      <= 1'b0;
       byte_cnt  <= 3'd0;
-      timeout   <= 4'd0;
     end else begin
       tx_send <= 1'b0; // default: pulse is only one cycle
       case (state)
@@ -207,7 +201,6 @@ module packet_sender #(parameter MAX_BYTES = 7) (
           end
         end
         3: begin  // wait for UART to finish (tx_busy=0)
-          //tx_send <= 1'b0;
           if (!tx_busy) begin          // Wait for TX to finish, proceed next byte after sent and idle
             //timeout <= 4'd0; // Reset timeout after send
             if (byte_cnt == MAX_BYTES - 3'd1) begin // Reset when last byte
@@ -218,13 +211,6 @@ module packet_sender #(parameter MAX_BYTES = 7) (
               byte_cnt <= byte_cnt + 1'b1;
               state <= 2'd1;
             end
-          // Timeout logic
-          //end else if (timeout == 14'd16383) begin // Timeout – force exit
-          //  state <= 2'd0;
-          //  busy <= 1'b0;
-          //  timeout <= 4'd0;
-          //end else begin
-          //  timeout <= timeout + 1'b1;
           end
         end
       endcase
