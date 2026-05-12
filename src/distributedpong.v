@@ -169,6 +169,7 @@ module tt_um_llhtimlam_DistributedPong (
           packet_3    <= {ball_y[3:0], vel_x};
           packet_4    <= {vel_y, 4'b0};
         end
+      end
       if (ball_tx_ready) begin
         tx_small_rst    <= 1'b1;
         send_packet_reg <= 1'b0;
