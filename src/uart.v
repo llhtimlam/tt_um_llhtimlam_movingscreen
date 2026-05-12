@@ -135,7 +135,7 @@ module uart_rx (
   end
 endmodule
 
-/*
+
 reg [7:0] tx_packet[0:5];
 // Byte 0: start
 tx_packet[0] = 8'h55;
