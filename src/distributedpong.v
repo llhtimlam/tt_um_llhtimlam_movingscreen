@@ -497,4 +497,6 @@ module tt_um_llhtimlam_DistributedPong (
   assign sdl_g  = pixel ? 8'hFF : 8'h00;
   assign sdl_b  = pixel ? 8'hFF : 8'h00;
 
+  wire _unused = &{1'b0, ui_in[6:2], ena, 1'b0};
+
 endmodule

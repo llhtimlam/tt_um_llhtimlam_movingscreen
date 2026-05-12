@@ -148,7 +148,7 @@ module packet_sender (
   reg [1:0] state;
   reg [2:0] byte_cnt;
 
-  reg [14:0] timeout;
+  //reg [14:0] timeout;
   
   reg start_ff;   // edge detect
 
