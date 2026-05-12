@@ -147,7 +147,7 @@ module tt_um_llhtimlam_DistributedPong (
   wire send_packet;
   wire packet_busy;
 
-  wire [7:0] tx_packet_bytes [0:MAX_BYTES-1];
+  wire [7:0] tx_packet_bytes [0:6];
   wire [7:0] tx_data;
   
   packet_sender packet_sender_inst (
@@ -159,7 +159,7 @@ module tt_um_llhtimlam_DistributedPong (
   );
 
   wire rx_packet_ready;
-  wire [7:0] rx_packet_bytes [0:DATA_BYTES-1];
+  wire [7:0] rx_packet_bytes [0:4];
 
   packet_receiver packet_receiver_inst (
     .clk(clk), .rst_n(rst_n),

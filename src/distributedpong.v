@@ -25,69 +25,8 @@ module tt_um_llhtimlam_DistributedPong (
   output wire [7:0] sdl_r,
   output wire [7:0] sdl_g,
   output wire [7:0] sdl_b,
-  output wire  debug_1,
-  output wire  debug_2,
-  output wire  debug_3,
-  output wire [7:0] debug_4,
-  output wire  debug_5,
-  output wire  debug_6,
-  output wire tx_sent,
-  output wire  debug_game_tick,
-  output wire debug_baud_tick,
-  output wire debug_uart_tx, debug_uart_rx,
-  output wire debug_tx_sent,
-  output wire debug_tx_busy,
-  output wire debug_packet_busy,
-  output wire [7:0] debug_tx_data,
-  output wire [7:0] debug_rx_data,
-  output wire [9:0] debug_rx_ball_x, debug_rx_ball_y, debug_ball_x, debug_ball_y,
-  output wire [3:0] debug_rx_ball_vel_x, debug_rx_ball_vel_y, debug_rx_cmd, debug_ball_vel_x, debug_ball_vel_y, debug_rx_ack,
-  output wire [3:0] debug_packet_cmd,
-  output wire [7:0] debug_packet2,
-  output wire [3:0] debug_txcd,
-  output wire [1:0] debug_bounce_cd,
-  output wire debug_collision_paddle_r, debug_collision_paddle_l, debug_collision_paddle_y,
-  output wire debug_ball_tx, debug_ball_rx,
-  output wire debug_ack, debug_send_ack_packet,
-  output wire debug_send_packet, debug_rx_packet_ready,
-  output wire debug_has_ball, debug_has_ball_rx,
 );
-  assign debug_game_tick = game_tick;
-  assign debug_uart_tx = uart_tx;
-  assign debug_uart_rx = uart_rx;
-  assign debug_tx_sent = tx_send;
-  assign debug_tx_busy = tx_busy;
-  assign debug_packet_busy = packet_busy;
-  assign debug_tx_data = tx_data;
-  assign debug_rx_data = rx_data;
-  assign debug_rx_ball_x = rx_ball_x;
-  assign debug_rx_ball_y = rx_ball_y;
-  assign debug_rx_ball_vel_x = rx_ball_vel_x;
-  assign debug_rx_ball_vel_y = rx_ball_vel_y;
-  assign debug_rx_cmd = rx_packet_bytes[0][7:4];
-  assign debug_ball_x = ball_x;
-  assign debug_ball_y = ball_y;
-  assign debug_ball_vel_x = vel_x;
-  assign debug_ball_vel_y = vel_y;
-  assign debug_rx_ack = rx_packet_bytes[1][7:4];
-  assign debug_ball_tx = ball_tx_ready;
-  assign debug_ball_rx = ball_rx_ack;
-  assign debug_ack = ack;
-  assign debug_send_ack_packet = send_ack_packet;
-  assign debug_packet_cmd = packet_cmd;
-  assign debug_packet2 = packet_2;
-  assign debug_txcd = tx_cd;
-  assign debug_bounce_cd = bounce_cd;
-  assign debug_collision_paddle_r = collision_paddle_r;
-  assign debug_collision_paddle_l = collision_paddle_l;
-  assign debug_collision_paddle_y = collision_paddle_y;
-  assign debug_4 = tx_data;
-  assign debug_6 = packet_busy;
-  assign debug_game_tick = game_tick;
-  assign debug_send_packet = send_packet_reg;
-  assign debug_rx_packet_ready = rx_packet_ready;
-  assign debug_has_ball = has_ball;
-  assign debug_has_ball_rx = has_ball_rx;
+
   // Input Mapping
   wire move_up, move_down, id;
   assign move_up    = ui_in[0];
@@ -147,7 +86,7 @@ module tt_um_llhtimlam_DistributedPong (
   wire send_packet;
   wire packet_busy;
 
-  wire [7:0] tx_packet_bytes [0:MAX_BYTES-1];
+  wire [7:0] tx_packet_bytes [0:6];
   wire [7:0] tx_data;
   
   packet_sender packet_sender_inst (
@@ -159,7 +98,7 @@ module tt_um_llhtimlam_DistributedPong (
   );
 
   wire rx_packet_ready;
-  wire [7:0] rx_packet_bytes [0:DATA_BYTES-1];
+  wire [7:0] rx_packet_bytes [0:4];
 
   packet_receiver packet_receiver_inst (
     .clk(clk), .rst_n(rst_n),

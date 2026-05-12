@@ -220,7 +220,7 @@ endmodule
 
 module packet_receiver (
   input  wire           clk, rst_n,
-  output reg  [7:0]     packet_bytes [0:DATA_BYTES-1],
+  output reg  [7:0]     packet_bytes [0:4],
   input  wire           rx_ready,     // pulse uart_rx(.ready) after reading byte
   input  wire [7:0]     rx_data,      // bitstream uart_rx(.data)
   output reg            ready        // pulse(1) done reading packet
