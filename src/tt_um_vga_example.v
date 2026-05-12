@@ -10,7 +10,7 @@
 `include "hvsync_generator.v"
 `include "uart.v"
 
-module tt_um_llhtimlam_distributedpong (
+module tt_um_llhtimlam_DistributedPong (
   input  wire [7:0] ui_in,    // Dedicated inputs: Paddle up(0), down(1), identity(7)
   output wire [7:0] uo_out,   // Dedicated outputs: TinyVGA: R1,G1,B1,vsync,R0,G0,B0,hsync
   input  wire [7:0] uio_in,   // IOs: Input path
@@ -51,13 +51,8 @@ module tt_um_llhtimlam_distributedpong (
   output wire debug_ack, debug_send_ack_packet,
   output wire debug_send_packet, debug_rx_packet_ready,
   output wire debug_has_ball, debug_has_ball_rx,
-  output reg [13:0]  baud_counter,
-  output wire [1:0] state1,
-  output reg [2:0] byte_cnt,
-  output reg [3:0]   bit_idx
 );
   assign debug_game_tick = game_tick;
-  assign debug_baud_tick = (baud_counter == `BAUD_COUNTER);
   assign debug_uart_tx = uart_tx;
   assign debug_uart_rx = uart_rx;
   assign debug_tx_sent = tx_send;
@@ -87,7 +82,6 @@ module tt_um_llhtimlam_distributedpong (
   assign debug_collision_paddle_l = collision_paddle_l;
   assign debug_collision_paddle_y = collision_paddle_y;
   assign debug_4 = tx_data;
-  assign debug_5 = (baud_counter == `BAUD_COUNTER);
   assign debug_6 = packet_busy;
   assign debug_game_tick = game_tick;
   assign debug_send_packet = send_packet_reg;
@@ -114,7 +108,7 @@ module tt_um_llhtimlam_distributedpong (
 
   // Bidirectional UART Configuration
   wire uart_tx, uart_rx, has_ball_rx, insync_rx;
-  //assign uio_oe     = 8'b01010101;  // [NOT INDEX] odd pins output (TX), even pins input (RX)
+  //assign uio_oe     = 8'b01010101;  // odd pins output (TX), even pins input (RX)
   assign uio_out[0] = uart_tx;
   assign uart_rx    = uio_in[1];
   assign uio_out[4] = has_ball;
@@ -138,7 +132,7 @@ module tt_um_llhtimlam_distributedpong (
   // UART modules
   uart_tx uart_tx_inst (
       .clk(clk), .rst_n(rst_n),
-      .send(tx_send), .data(tx_data), .tx(uart_tx), .busy(tx_busy), .baud_counter(baud_counter), .bit_idx(bit_idx)
+      .send(tx_send), .data(tx_data), .tx(uart_tx), .busy(tx_busy)
   );
   uart_rx uart_rx_inst (
       .clk(clk), .rst_n(rst_n),
@@ -161,7 +155,7 @@ module tt_um_llhtimlam_distributedpong (
     .start(send_packet_reg),
     .packet_bytes(tx_packet_bytes),
     .tx_send(tx_send), .tx_data(tx_data),
-    .tx_busy(tx_busy), .busy(packet_busy), .state(state1), .byte_cnt(byte_cnt)
+    .tx_busy(tx_busy), .busy(packet_busy)
   );
 
   wire rx_packet_ready;

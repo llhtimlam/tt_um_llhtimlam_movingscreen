@@ -148,10 +148,10 @@ tx_packet[4] = y_low;
 tx_packet[5] = tx_packet[1] ^ tx_packet[2] ^ tx_packet[3] ^ tx_packet[4];
 
 
-module packet_sender #(parameter MAX_BYTES = 7) (
+module packet_sender (
   input  wire       clk, rst_n,
   input  wire       start,            // pulse(1) to send packet
-  input  wire [7:0] packet_bytes [0:MAX_BYTES-1], // packet to send
+  input  wire [7:0] packet_bytes [0:6], // packet to send
   output reg        tx_send,          // pulse uart_tx(.send) 
   output wire [7:0] tx_data,          // bitstream uart_tx(.data)
   input  wire       tx_busy,          // status uart_tx(.busy)
@@ -218,7 +218,7 @@ module packet_sender #(parameter MAX_BYTES = 7) (
   end
 endmodule
 
-module packet_receiver #(parameter DATA_BYTES = 5) (
+module packet_receiver (
   input  wire           clk, rst_n,
   output reg  [7:0]     packet_bytes [0:DATA_BYTES-1],
   input  wire           rx_ready,     // pulse uart_rx(.ready) after reading byte
@@ -252,7 +252,7 @@ module packet_receiver #(parameter DATA_BYTES = 5) (
           1: begin // Message Byte
             packet_bytes[byte_cnt] <= rx_data;
             running_ecc <= running_ecc ^ rx_data;
-            if (byte_cnt == DATA_BYTES - 1)
+            if (byte_cnt == 4)
               state <= 2'd2;
             else
               byte_cnt <= byte_cnt + 3'd1;
