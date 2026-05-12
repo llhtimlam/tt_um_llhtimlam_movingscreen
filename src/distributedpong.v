@@ -52,12 +52,12 @@ module tt_um_llhtimlam_DistributedPong (
   // Graphic Generator
   wire        display_on;
   wire [9:0]  hpos, vpos;
-  wire [9:0] sdl_sx,
-  wire [9:0] sdl_sy,
-  wire       sdl_de,
-  wire [7:0] sdl_r,
-  wire [7:0] sdl_g,
-  wire [7:0] sdl_b,
+  wire [9:0] sdl_sx;
+  wire [9:0] sdl_sy;
+  wire       sdl_de;
+  wire [7:0] sdl_r;
+  wire [7:0] sdl_g;
+  wire [7:0] sdl_b;
 
   hvsync_generator vga_inst (
     .clk(clk), .reset(~rst_n),
