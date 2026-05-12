@@ -1,10 +1,11 @@
 /*
  * Copyright (c) 2026 Tim Lam
  * SPDX-License-Identifier: Apache-2.0
- */
 
 `default_nettype none
 `include "config.vh"
+
+/* verilator lint_off UNUSEDSIGNAL */
 
 module tt_um_llhtimlam_DistributedPong (
   input  wire [7:0] ui_in,    // Dedicated inputs: Paddle up(0), down(1), identity(7)
@@ -55,12 +56,6 @@ module tt_um_llhtimlam_DistributedPong (
   // Graphic Generator
   wire        display_on;
   wire [9:0]  hpos, vpos;
-  wire [9:0] sdl_sx;
-  wire [9:0] sdl_sy;
-  wire       sdl_de;
-  wire [7:0] sdl_r;
-  wire [7:0] sdl_g;
-  wire [7:0] sdl_b;
 
   hvsync_generator vga_inst (
     .clk(clk), .reset(~rst_n),
@@ -87,7 +82,6 @@ module tt_um_llhtimlam_DistributedPong (
   localparam MAX_BYTES  = DATA_BYTES + 2;  // start + data + checksum
   
   wire tx_send;
-  wire send_packet;
   wire packet_busy;
 
   wire [55:0] tx_packet_bytes; // 7 byte total length
@@ -249,7 +243,7 @@ module tt_um_llhtimlam_DistributedPong (
   end
   
   // Double Flip Flop (clk domain)
-  reg [1:0] insync_rx_sync, has_ball_rx_sync, spawn_sync;
+  reg [1:0] insync_rx_sync, has_ball_rx_sync;
 
   always @(posedge clk) begin
     // Shift bit (Only for Raw RX)
@@ -306,7 +300,7 @@ module tt_um_llhtimlam_DistributedPong (
 
   reg [9:0] ball_x, ball_y; // 0~1023
   reg signed [3:0] vel_x, vel_y; // +7~-8
-  reg [9:0] paddle_x, paddle_y;       // 0~1023
+  reg [9:0] paddle_y;       // 0~1023
   
   // Advanced Collision Check
   /*
@@ -325,7 +319,6 @@ module tt_um_llhtimlam_DistributedPong (
   // Paddle movement
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      paddle_x       <= `PADDLE_X;
       paddle_y       <= 10'd240;
     end else if (!pause) begin
       if (game_tick) begin
@@ -490,19 +483,16 @@ module tt_um_llhtimlam_DistributedPong (
   assign vga_b0 = pixel;
 
   // VGA screen output (for external DAC / monitor)
-  assign sdl_sx = hpos;
-  assign sdl_sy = vpos;
-  assign sdl_de = display_on;
-  assign sdl_r  = pixel ? 8'hFF : 8'h00;
-  assign sdl_g  = pixel ? 8'hFF : 8'h00;
-  assign sdl_b  = pixel ? 8'hFF : 8'h00;
+  // assign sdl_sx = hpos;
+  // assign sdl_sy = vpos;
+  // assign sdl_de = display_on;
+  // assign sdl_r  = pixel ? 8'hFF : 8'h00;
+  // assign sdl_g  = pixel ? 8'hFF : 8'h00;
+  // assign sdl_b  = pixel ? 8'hFF : 8'h00;
 
   wire _unused = &{ena, 
-                 paddle_x, spawn_sync, 
                  rx_packet_bytes[39:36], rx_packet_bytes[3:0],
-                 send_packet, 
-                 sdl_sx, sdl_sy, sdl_de, sdl_r, sdl_g, sdl_b,
-                 uio_in[6], uio_in[4:2], uio_in[0],
+                 uio_in[6], uio_in[4:2], uio_in[0], ui_in[6:2],
                  1'b0};
 
 endmodule
