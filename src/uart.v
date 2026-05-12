@@ -1,5 +1,6 @@
 
 `default_nettype none
+`include "config.vh"
 
 /* verilator lint_off WIDTHTRUNC */
 /* verilator lint_off WIDTHEXPAND */

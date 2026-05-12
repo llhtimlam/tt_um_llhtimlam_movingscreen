@@ -6,7 +6,7 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = distributedpong.v hvsync_generator.v uart.v config.vh
+PROJECT_SOURCES = distributedpong.v hvsync_generator.v uart.v
 
 ifneq ($(GATES),yes)
 

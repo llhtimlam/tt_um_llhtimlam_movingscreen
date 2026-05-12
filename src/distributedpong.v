@@ -4,6 +4,7 @@
  */
 
 `default_nettype none
+`include "config.vh"
 
 module tt_um_llhtimlam_DistributedPong (
   input  wire [7:0] ui_in,    // Dedicated inputs: Paddle up(0), down(1), identity(7)

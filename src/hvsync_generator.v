@@ -1,5 +1,6 @@
 `ifndef HVSYNC_GENERATOR_H
 `define HVSYNC_GENERATOR_H
+`include "config.vh"
 
 /*
 Video sync generator, used to drive a VGA monitor.
