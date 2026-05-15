@@ -1,3 +1,5 @@
+
+
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
 # Tiny Tapeout Verilog Project: Distributed Computing with Pong!
@@ -6,7 +8,8 @@
 
 <video src="src/debug_history/checkpoint5_unstable_teleport_after_3/checkpoint5.mp4" controls="controls" width="100%">
 </video>
-[Watch Game Demo](src/debug_history/checkpoint5_unstable_teleport_after_3/checkpoint5.mp4)
+https://github.com/user-attachments/assets/e9ea9dbf-cc86-4f69-a1a8-7cf9f02c17e4
+https://github.com/user-attachments/assets/5f583adb-5bea-4dd4-957a-cdc12cdf7bfc
 
 ### Two chips. One game. No seams.
 
@@ -313,7 +316,7 @@ Instead of embedding lasers inside the chip, my research moves the light source 
 
 ### The Physics: Why Pockels Effect Beats Laser Modulation
 
-Traditional VCSELs work by turning a laser on and off as fast as possible. But switching a laser on and off has hard limits – it is slow, generates heat, and eventually cannot go any faster.
+Traditional VCSELs work by turning a laser on and off as fast as possible. But switching a laser on and off has hard limits – it is slow, generates heat, and eventually cannot go any faster. State‑of‑the‑art VCSELs top out around **200 Gb/s PAM4** per lane [11], far below the sub‑TeraHz target.
 
 <img src="EvanscentCoupling.jpg" width="100%" alt="Evanscent Coupling">
 
@@ -325,7 +328,7 @@ This design takes a completely different approach. It uses **evanescent coupling
 
 <video src="1StraightWaveguide1MRR.mp4" controls="controls" width="100%">
 </video>
-[Watch Video](1StraightWaveguide1MRR.mp4)
+https://github.com/user-attachments/assets/ab7ec895-7bc3-44ab-92f8-eb0b8b89a59e
 
 > Resonance between straight waveguide and a microring resonator, video [source](https://www.comsol.com/blogs/calculating-the-spectral-properties-of-an-optical-ring-resonator) [17]
 
@@ -344,20 +347,22 @@ This is the breakthrough that enables sub‑TeraHz modulation.
 
 ### The Design: External Frequency Comb + MRR Array
 
-Instead of embedding lasers on-chip, a single external frequency comb produces many wavelengths simultaneously. Here is how it works.
+Instead of embedding lasers on-chip, a single external frequency comb produces many wavelengths simultaneously. **All optical power comes from this external source** – the chip itself generates no laser light, only modulates what it receives. This is the critical distinction from VCSELs, where lasers are embedded inside the CMOS layer and generate heat locally.
 
 
 <video src="MicroringResonatorVideo.mp4" controls="controls" width="100%">
 </video>
-[Watch Video](MicroringResonatorVideo.mp4)
+https://github.com/user-attachments/assets/8fa070a1-b4b3-4da3-88fb-0498b52435bd
 
 > Laser injection to chip scale MRR, video [source](https://actu.epfl.ch/news/a-micro-ring-resonator-with-big-potential-5/) [22]
+
+Here is how the full system works.
 
 1. Injection: the frequency comb injects a C‑band (capable of long-distance transfer) with regularly spaced spectral lines into a single bus waveguide via photonic wirebonding. Each discrete spectral line serves as an independent data channel.
 
 2. Modulation: an array of MRRs sits alongside the shared waveguide, with each individual ring tuned to resonate with one specific wavelength from the comb. When no voltage is applied, the MRR resonates at that frequency and blocks the light – a logical 0. When voltage is applied to trigger the Pockels effect, the resonance frequency shifts and light passes through – a logical 1.
 
-3. Parallel Multiplexing: The independently modulated, multi-coloured data channels travel concurrently down the single, shared waveguide across the chip, board, or server rack.
+3. Parallel Multiplexing (Ultra-Dense WDM)** – The independently modulated, multi-colored data channels travel concurrently down a single, shared waveguide across the chip, board, or server rack. Because MRRs are extremely compact. This is **ultra-dense wavelength division multiplexing (DWDM)** at the chip scale – a capability VCSELs cannot match [18].
 
 4. Demodulation: A matching receiver array of MRRs, paired with integrated high-speed photodetectors, filters and reads each wavelength channel in parallel.
 
@@ -401,9 +406,9 @@ A vertically integrated **Electronic‑Photonic Integrated Circuit (EPIC)** fab 
 
 ### A Word from the Author
 
-The author has been working on this project alone and has run into many life challenges. Nobody believed a "nobody" and also would be crazy enough to attempt for a fight for world-class semiconductor empire. So the author bit the bullet and tanked the losses.
+The author has been working on this project alone and has run into many life challenges. Nobody believed a "nobody" and also would be crazy enough to attempt for a fight for world-class semiconductor empire. So the author just bite the bullet and see how far it go until getting lost in the street.
 
-This silly Pong game? It's a stupid prototype. A desperate attempt to prove that this could work. To convince people that one person who have nothing to do in life but with an ambition and 100+ hours within a week can make something real.
+This silly Pong game? It's a stupid prototype. A desperate attempt to prove that this could work. To convince people that one ambition person who have nothing to do with life can churn out something real from 100+ hours within a week.
 
 **If you're interested – even just curious – I'd love to chat.**
 Connect with me on [LinkedIn](https://www.linkedin.com/in/timllh/).
@@ -413,8 +418,8 @@ Connect with me on [LinkedIn](https://www.linkedin.com/in/timllh/).
 | Task | Status |
 |------|--------|
 | Athermal MRR Array Simulation and Optimization | On Hold |
-| 7nm CMOS FinFET Process CAD Modeling | On Hold |
-| DRAM Process CAD Modeling (Co-Developing In-Game DRAM Process Recipes for [SuperSymmetry](https://susymodpack.substack.com/p/3-circuit-overhaul)) | Work in Progress |
+| 7nm CMOS FinFET Process [CAD Modeling](https://cad.onshape.com/documents/391d1465c77e409ce11d0542/w/4c1477bce20b74aae019f360/e/4d678d38a66ef595b6668804) | On Hold |
+| DRAM Process [CAD Modeling](https://cad.onshape.com/documents/a5bdfe7155a9c30d78a06951/w/7497dcf7f196195f860859c6/e/57f4ddbb05d26e6cae023db0?renderMode=0&uiState=6a0695b865762f18dd10f743) (Co-Developing In-Game DRAM Process Recipes for [SuperSymmetry](https://susymodpack.substack.com/p/3-circuit-overhaul)) | Work in Progress |
 | Complete Circuit Design for the EPIC | On Hold |
 | Develop Minimal Viable Layout Schematics of the EPIC | On Hold |
 | [**2026 Chipathon**](https://sscs.ieee.org/technical-committees/tc-ose/sscs-pico-design-contest/) | Current next task |
