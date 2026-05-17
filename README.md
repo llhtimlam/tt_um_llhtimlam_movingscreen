@@ -567,7 +567,11 @@ Two leading nonlinear electro-optic platforms are Thin Film Lithium Niobate (TFL
 
 | Property | Thin Film Lithium Niobate (TFLN) | Barium Titanate Oxide (BTO) |
 | :--- | :--- | :--- |
-| **Linear electro-optic coefficient ($r$)** | 30–31 pm/V | 160–900 pm/V |
+| **Linear electro-optic coefficient ($r$)** | 30.9–32.6 pm/V [30] | 105–1300 pm/V [30] |
+
+https://github.com/user-attachments/assets/f0b8e2ba-038c-4360-95a3-1b1910a06954
+
+
 | **Curie temperature ($T_C$)** | 1140 °C | 120 °C |
 | **Thermal conductivity (bulk)** | ~5.6 W/(m·K) [46, 47] | 4.05 W/(m·K) [48] |
 | **CMOS compatibility** | Excellent (heterogeneous integration, 200 mm/300 mm foundry compatible) [30] | Demonstrated (300 mm process via MBE, but research‑scale) [49, 50] |
@@ -622,7 +626,7 @@ All wavelengths share the same optical waveguide simultaneously. Because communi
 
 <video src="MicroringResonatorVideo.mp4" controls="controls" width="100%">
 </video>
-<video src="https://github.com/user-attachments/assets/8fa070a1-b4b3-4da3-88fb-0498b52435bd" controls="controls" width="100%">
+<video src="https://github.com/user-attachments/assets/af563e31-510f-414c-9099-f0d69ada206b" controls="controls" width="100%">
 </video>
 
 > Laser injection to chip scale MRR, video [source](https://actu.epfl.ch/news/a-micro-ring-resonator-with-big-potential-5/) [65]
