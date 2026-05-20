@@ -681,7 +681,8 @@ As part of the author's ongoing game development work for [SuperSymmetry](https:
 <details>
 <summary><b>In-Game DRAM Fabrication Process Flow</b></summary>
 
-<img src="DRAMDoddle.jpg" width="100%" alt="DRAM Doddle">
+<img src="DRAMDoddle1.jpg" width="100%" alt="DRAM Doddle 1">
+<img src="DRAMDoddle2.jpg" width="100%" alt="DRAM Doddle 2">
 
 > Process speculation on the DRAM fabrication process of DDR3 in the early 2010 era of CMOS Technology
 
