@@ -644,24 +644,6 @@ As AI accelerators and datacenters demand ever-greater bandwidth, photonic inter
 However, as of the current date of writing, **no commercial foundry offers vertically integrated fabrication of advanced CMOS logic with nonlinear electro-optic materials**. TFLN is produced in specialized photonics foundries or as separate chiplets [53-55], while BTO remains research‑exclusive with no commercial production‑compatible solution available [50]. Realizing this architecture therefore requires building a dedicated fab capable of heterogeneous integration with tight photonic-electronic alignment and iterative process development, enabling scalable, high-performance optical interconnects from chip-to-chip to rack-scale. Pioneering such a facility establishes a practical pathway to sub‑THz data transfer, reduces time-to-experiment for new designs, accelerates prototype cycles, and is why these architectures are attracting growing attention in both academia and industry.
 
 ---
-
-### A Word from the Author
-
-<details>
-<summary>Click to expand</summary>
-
-The author has been working on this project alone and has run into many life issues. Nobody believed a "nobody" and also would be crazy enough to attempt for a fight for world-class semiconductor empire. So the author just bite the bullet and see how far it goes until getting lost in the street.
-
-This silly Pong game? It's a stupid prototype. A desperate attempt to prove that this could work. To convince people that one person who is incompatible with life can churn out something real from 100+ hours within a week with no food, water, and sleep.
-
-The goal of this paper serves as a yeouibu for his project to proceed, as the technical part is always easier than the human part. The author has had a hard time talking and working with humans his entire life and could not brute-force a fix for it. The author just does whatever he can to brute-force the part he can manage. If the author had gotten this project going 3 years ago before his birthday when he was bleak, it might have fixed all of his life's problems. But now, the golden era is in the past. The author will just take whatever it takes from nothing to force its way out.
-
-As there is only a slim chance of getting any working hands, and the author doesn't know how to build a functional team without establishing a codependency that involves 24-hour attention, the project assumption is based on the author going solo all the way to the end without any external help. This project and the author have been inspired by maplestory, [gregtech](https://greglore.miraheze.org/wiki/Main_Page), breaking bad, [hackerfab](https://docs.hackerfab.org/home), tower of god, and Dr. Semiconductor's fab in a shed [video](https://www.youtube.com/watch?v=HfSO-LCKmrA). As a desperate attempt at how one man with nothing but himself is able to get out under a rock to reach into the deity realm. It is the ultimate manifestation of what happens when a socially contained group with nothing to do with life transgresses out to wreak havoc on the meta. In a quest to pursue knowledge of the universe, the author was crusaded by a board of professor in a department meeting, risking his graduation when author was trying to audit every course available in the university with 400+ annoying spam emails, just try to fully utilizing university resources during covid.
-</details>
-
-**If you're interested – even just curious – I'd love to chat.**
-Connect with me on [LinkedIn](https://www.linkedin.com/in/timllh/).
-
 #### Author's Current Task list
 
 | Task | Status |
@@ -673,6 +655,9 @@ Connect with me on [LinkedIn](https://www.linkedin.com/in/timllh/).
 | Develop Minimal Viable Layout Schematics of the EPIC | On Hold |
 | DIY Silicon photonic interconnect with Hackerfab process | Ideation |
 | [**2026 Chipathon**](https://sscs.ieee.org/technical-committees/tc-ose/sscs-pico-design-contest/) | Current next task |
+
+**If you're interested – even just curious – I'd love to chat.**
+Connect with me on [LinkedIn](https://www.linkedin.com/in/timllh/).
 
 #### Related Work: In-Game Semiconductor Fabrication
 
